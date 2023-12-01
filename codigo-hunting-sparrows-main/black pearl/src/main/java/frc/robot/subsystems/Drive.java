@@ -6,8 +6,8 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
-//adelante es right negativo y left positivo
 
+//adelante es right negativo y left positivo
 public class Drive extends SubsystemBase {
   //Hardware ----------------------------------------------------------------->
   public final TalonSRX MotorFR = new TalonSRX(Constants.IDmotorFR); //declaracion del talon con constante
@@ -19,7 +19,7 @@ public class Drive extends SubsystemBase {
   double xSpeed = 0;
   double Throttle = 0;  
   double Brake = 0;  
-    
+
   //OUTPUTS ----------------------------------------------------------------->
   double final_left_front_demand = 0;
   double final_right_front_demand = 0;
@@ -59,21 +59,11 @@ public class Drive extends SubsystemBase {
       leftPwm = ((xSpeed) + absThrottle)*Constants.DriveSensitivity;
       rightPwm = -(-(xSpeed) + absThrottle)*Constants.DriveSensitivity;
   }
- /*
-    final_right_front_demand = speedTramp(rightPwm, final_right_front_demand);
-    final_right_back_demand = speedTramp(rightPwm, final_right_back_demand);
-    final_left_front_demand = speedTramp(leftPwm, final_left_front_demand);
-    final_left_back_demand = speedTramp(leftPwm, final_left_back_demand);
-*/
-
+ 
     final_right_front_demand = rightPwm;
     final_right_back_demand = rightPwm;
     final_left_front_demand =leftPwm;
     final_left_back_demand = leftPwm;
-
-
-    
-    
 
     outMotores(); //llamado de la funcion de salida de motores
    }
@@ -94,7 +84,7 @@ public class Drive extends SubsystemBase {
     }
   }
 
-  public void outMotoresAuto( double frontRightDemand, double backRightDemand, 
+  public void outMotoresAuto(double frontRightDemand, double backRightDemand, 
     double frontLeftDemand, double backleftDemand ){
       MotorFR.set(ControlMode.PercentOutput, frontRightDemand);
       MotorBR.set(ControlMode.PercentOutput, backRightDemand);
